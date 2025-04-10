@@ -16,7 +16,7 @@ export interface User extends Base {
   user_join_date: Date;
   user_baptism_date: Date;
   user_role: Role[];
-  user_department: Department;
+  user_department: Department[];
   user_account: UserAccount;
   user_all_access: boolean
 }

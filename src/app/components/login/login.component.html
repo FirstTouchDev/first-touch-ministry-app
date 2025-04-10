@@ -9,22 +9,31 @@
       </div>
     </div>
     <div class="fields-container">
-      <ion-item  class="ion-no-padding" >
-        <ion-input type="text" label="Username" labelPlacement="floating" placeholder=""></ion-input>
-      </ion-item>
-      <ion-item  class="ion-no-padding">
-        <ion-input type="password" label="Password" labelPlacement="floating" placeholder="">
-          <!-- <ion-input-password-toggle slot="end"></ion-input-password-toggle> -->
-        </ion-input>
-        
-      </ion-item>
-      <p style="text-align: right;" ><ion-text color="primary"><u>Forgot Password?</u></ion-text></p>
-      
+      <form [formGroup]="loginForm" (ngSubmit)="verifyCredentials()">
+        <ion-item  class="ion-no-padding" >
+          <ion-input type="text" label="Username" labelPlacement="floating" placeholder="" formControlName="username" required></ion-input>
+          
+        </ion-item>
+        <ion-text color="danger">
+          <p class="requiredField" *ngIf="loginForm.get('username')?.touched && loginForm.get('username')?.invalid">This field is required.</p>
+        </ion-text>
+        <ion-item  class="ion-no-padding">
+          <ion-input type="password" label="Password" labelPlacement="floating" placeholder="" formControlName="password" required>
+            <ion-input-password-toggle *ngIf="!loginForm.get('password')?.invalid" slot="end"></ion-input-password-toggle>
+          </ion-input>
+        </ion-item>
+        <ion-text color="danger">
+          <p class="requiredField" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">This field is required.</p>
+        </ion-text>
+        <p style="text-align: right;" ><ion-text color="primary"><u>Forgot Password?</u></ion-text></p>
+  
+        <div class="action-container">
+          <ion-button type="submit" expand="block" [disabled]="loginForm.invalid">Login</ion-button>
+          <p>Don't have an account?&nbsp;<ion-text color="primary"><u>Register</u></ion-text></p>
+        </div>
+      </form>
     </div>
-    <div class="action-container">
-      <ion-button expand="block">Login</ion-button>
-      <p>Don't have an account?&nbsp;<ion-text color="primary"><u>Register</u></ion-text></p>
-    </div>
+    
   </div>
   
   
