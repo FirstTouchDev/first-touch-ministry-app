@@ -1,40 +1,50 @@
 <ion-content class="ion-padding">
-  <div class="master-container">
-    <div class="logo-container">
-      <div>
-        <img class="ftm-logo-img" src="assets/logos/First Touch Ministry Logo - Full -Dark.png">
-      </div>
-      <div style="margin-top: 40px;">
-        <ion-text>Login to your account</ion-text>
-      </div>
-    </div>
-    <div class="fields-container">
-      <form [formGroup]="loginForm" (ngSubmit)="verifyCredentials()">
-        <ion-item  class="ion-no-padding" >
-          <ion-input type="text" label="Username" labelPlacement="floating" placeholder="" formControlName="username" required></ion-input>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="1"></ion-col>
+      <ion-col size="12">
+        <div class="master-container">
+          <div class="logo-container">
+            <div>
+              <img class="ftm-logo-img" src="assets/logos/First Touch Ministry Logo - Full -Dark.png">
+            </div>
+            <div style="margin-top: 40px;">
+              <ion-text>Login to your account</ion-text>
+            </div>
+          </div>
+          <div class="fields-container">
+            <form [formGroup]="loginForm" (ngSubmit)="verifyCredentials()">
+              <ion-item  class="ion-no-padding" >
+                <ion-input type="text" label="Username" labelPlacement="floating" placeholder="" formControlName="username" required></ion-input>
+                
+              </ion-item>
+              <ion-text color="danger">
+                <p class="requiredField" *ngIf="loginForm.get('username')?.touched && loginForm.get('username')?.invalid">This field is required.</p>
+              </ion-text>
+              <ion-item  class="ion-no-padding">
+                <ion-input type="password" label="Password" labelPlacement="floating" placeholder="" formControlName="password" required>
+                  <ion-input-password-toggle *ngIf="!loginForm.get('password')?.invalid" slot="end"></ion-input-password-toggle>
+                </ion-input>
+              </ion-item>
+              <ion-text color="danger">
+                <p class="requiredField" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">This field is required.</p>
+              </ion-text>
+              <p style="text-align: right;" ><ion-text color="primary"><u>Forgot Password?</u></ion-text></p>
+        
+              <div class="action-container">
+                <ion-button type="submit" expand="block" [disabled]="loginForm.invalid">Login</ion-button>
+                <p>Don't have an account?&nbsp;<ion-text color="primary"><u>Register</u></ion-text></p>
+              </div>
+            </form>
+          </div>
           
-        </ion-item>
-        <ion-text color="danger">
-          <p class="requiredField" *ngIf="loginForm.get('username')?.touched && loginForm.get('username')?.invalid">This field is required.</p>
-        </ion-text>
-        <ion-item  class="ion-no-padding">
-          <ion-input type="password" label="Password" labelPlacement="floating" placeholder="" formControlName="password" required>
-            <ion-input-password-toggle *ngIf="!loginForm.get('password')?.invalid" slot="end"></ion-input-password-toggle>
-          </ion-input>
-        </ion-item>
-        <ion-text color="danger">
-          <p class="requiredField" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">This field is required.</p>
-        </ion-text>
-        <p style="text-align: right;" ><ion-text color="primary"><u>Forgot Password?</u></ion-text></p>
-  
-        <div class="action-container">
-          <ion-button type="submit" expand="block" [disabled]="loginForm.invalid">Login</ion-button>
-          <p>Don't have an account?&nbsp;<ion-text color="primary"><u>Register</u></ion-text></p>
         </div>
-      </form>
-    </div>
+      </ion-col>
+      <ion-col size="1"></ion-col>
+    </ion-row>
     
-  </div>
+  </ion-grid>
+  
   
   
 </ion-content>

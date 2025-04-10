@@ -6,6 +6,6 @@ import { GuestGuard } from './services/auth/guest-guard.service';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
-    { path: 'login', component: LoginComponent, canActivate: [GuestGuard] },
-    { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+    { path: 'login', component: LoginComponent, /*canActivate: [GuestGuard]*/ },
+    { path: 'home', component: HomeComponent, /*canActivate: [AuthGuard]*/ },
 ];
