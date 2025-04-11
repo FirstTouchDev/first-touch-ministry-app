@@ -1,0 +1,66 @@
+
+<ion-menu menuId="app-menu" contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>FTM Apps</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content color="light">
+    <ion-list [inset]="true">
+      <ion-item>
+        <ion-label><b>Worship Ministry</b></ion-label>
+      </ion-item>
+      <ion-item [button]="true">
+        <ion-icon color="primary" slot="start" name="play"></ion-icon>
+        <ion-label>Line Up</ion-label>
+        
+      </ion-item>
+      <ion-item [button]="true">
+        <ion-icon color="success" slot="start" name="checkbox"></ion-icon>
+        <ion-label>Approval</ion-label>
+      </ion-item>
+      <ion-item [button]="true">
+        <ion-icon color="danger" slot="start" name="person-remove"></ion-icon>
+        <ion-label>Substitution</ion-label>
+        
+      </ion-item>
+      
+    </ion-list>
+  </ion-content>
+  
+</ion-menu>
+<ion-menu side="end" menuId="user-menu" contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Name</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content color="light">
+    <ion-list [inset]="true">
+      <ion-item>
+        <ion-label><b>User</b></ion-label>
+      </ion-item>
+        <ion-item class="bindEnableButton" [button]="true" (click)="logoutUser()">
+          <ion-icon color="danger" slot="start" name="log-out"></ion-icon>
+          <ion-label>Logout</ion-label>
+        </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start" (click)="openAppMenu()">
+        <ion-button>
+          <ion-icon slot="icon-only" name="menu"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title>First Touch Ministry</ion-title>
+      <ion-buttons slot="end" (click)="userMenu()">
+        <ion-button>
+          <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+</div>

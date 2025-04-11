@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { addIcons } from 'ionicons';
-import { apps, create, trash, musicalNotes } from 'ionicons/icons'
+import { personCircle, home, apps, create, trash, musicalNotes } from 'ionicons/icons'
 
 @Component({
   selector: 'app-footer',
@@ -15,7 +15,7 @@ import { apps, create, trash, musicalNotes } from 'ionicons/icons'
 export class FooterComponent  implements OnInit {
 
   constructor() { 
-    addIcons( { apps, create, trash });
+    addIcons( { apps, create, trash, home, personCircle });
   }
 
   ngOnInit() {}

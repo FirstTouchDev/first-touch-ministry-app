@@ -49,7 +49,7 @@ export class LoginComponent  implements OnInit {
       const { username, password } = this.loginForm.value;
       const isValid = await this.loginService.verifyUser(username, password, true);
       if (isValid) {
-        this.toastService.toast('Welcome!', 2000, 'primary');
+        this.toastService.toast('Welcome!', 2000, 'success');
         this.router.navigate(['/home']);
       } else {
         this.toastService.toast('Invalid username or password!', 2000, 'danger');

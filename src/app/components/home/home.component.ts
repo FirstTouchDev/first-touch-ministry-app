@@ -3,13 +3,15 @@ import { IonicModule } from '@ionic/angular';
 import { eye, create, trash, musicalNotes } from 'ionicons/icons'
 import { addIcons } from 'ionicons';
 import { FooterComponent } from "../footer/footer.component";
+import { HeaderMenuComponent } from "../header-menu/header-menu.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
     IonicModule,
-    FooterComponent
+    FooterComponent,
+    HeaderMenuComponent
 ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
