@@ -19,7 +19,7 @@ export class LoginService {
 
     }
 
-    public async verifyUser(username: string, password: string, setUser: boolean): Promise<boolean>{ 
+    public async verifyUser(username: string, password: string, isAUserLogin: boolean): Promise<boolean>{ 
 
         const users = await firstValueFrom(this.userService.getAll());
         const matchedUser = users.find(
@@ -28,8 +28,18 @@ export class LoginService {
             user.user_account.password.toLowerCase() === password.toLowerCase()
         );
 
-        if (setUser && matchedUser){
-            this.authService.setUser(matchedUser);
+        if (isAUserLogin && matchedUser){
+            if (matchedUser.sys_id) {
+                console.log("matchedUser.sys_id: " + matchedUser.sys_id);
+                this.authService.setUser(matchedUser);
+                await this.userService.update(matchedUser.sys_id, {
+                  user_account: {
+                    ...matchedUser.user_account,
+                    isUserLoggedIn: true,
+                    lastLogIn: new Date()
+                  }
+                });
+            }
         }
 
         return matchedUser !== undefined;

@@ -1,0 +1,162 @@
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="1"></ion-col>
+      <ion-col size="12">
+        <app-custom-back-button></app-custom-back-button>
+
+        <div class="master-container">
+          <div class="logo-container">
+            <div>
+              <img class="ftm-logo-img" src="assets/logos/First Touch Ministry Logo - Full -Dark.png">
+            </div>
+            <div style="margin-top: 40px;">
+              <ion-text>Register to First Touch Ministry</ion-text>
+            </div>
+          </div>
+          <div style="margin-top: 32px;">
+
+          </div>
+          <form [formGroup]="registrationForm" (ngSubmit)="registerUser()">
+            <ion-accordion-group [multiple]="true" [value]="['first', 'second']">
+              <!-- PERSONAL DATA -->
+              <ion-accordion value="first">
+                <ion-item slot="header" color="light">
+                  <ion-label>Personal Data</ion-label>
+                </ion-item>
+                <div class="ion-padding" slot="content">
+                  <!-- First Name -->
+                  <ion-item class="ion-no-padding">
+                    <ion-input type="text" label="First Name" labelPlacement="floating" formControlName="firstName" required></ion-input>
+                  </ion-item>
+                  <ion-text color="danger" *ngIf="isInvalid('firstName')">
+                    <p class="requiredField">This field is required.</p>
+                  </ion-text>
+
+                  <!-- Middle Name -->
+                  <ion-item class="ion-no-padding">
+                    <ion-input type="text" label="Middle Name" labelPlacement="floating" formControlName="middleName" required></ion-input>
+                  </ion-item>
+                  <ion-text color="danger" *ngIf="isInvalid('middleName')">
+                    <p class="requiredField">This field is required.</p>
+                  </ion-text>
+
+                  <!-- Last Name -->
+                  <ion-item class="ion-no-padding">
+                    <ion-input type="text" label="Last Name" labelPlacement="floating" formControlName="lastName" required></ion-input>
+                  </ion-item>
+                  <ion-text color="danger" *ngIf="isInvalid('lastName')">
+                    <p class="requiredField">This field is required.</p>
+                  </ion-text>
+
+                  <!-- Email Address -->
+                  <ion-item class="ion-no-padding">
+                    <ion-input type="email" label="Email Address" labelPlacement="floating" formControlName="emailAddress" required></ion-input>
+                  </ion-item>
+                  <ion-text color="danger" *ngIf="isInvalid('emailAddress')">
+                    <p class="requiredField">Enter a valid email.</p>
+                  </ion-text>
+
+                  <!-- Phone Number -->
+                  <ion-item class="ion-no-padding">
+                    <ion-input type="text" label="Phone Number" labelPlacement="floating" formControlName="phoneNumber" required></ion-input>
+                  </ion-item>
+                  <ion-text color="danger" *ngIf="isInvalid('phoneNumber')">
+                    <p class="requiredField">This field is required.</p>
+                  </ion-text>
+
+                  <!-- Birth Date -->
+                  <ion-item class="ion-no-padding">
+                    <ion-input type="date" label="Birthdate" labelPlacement="floating" formControlName="birthDate" required></ion-input>
+                  </ion-item>
+                  <ion-text color="danger" *ngIf="isInvalid('birthDate')">
+                    <p class="requiredField">This field is required.</p>
+                  </ion-text>
+
+                  <!-- Gender -->
+                  <ion-item class="ion-no-padding">
+                    <ion-select label="Gender" labelPlacement="floating" formControlName="gender" required>
+                      <ion-select-option value="Male">Male</ion-select-option>
+                      <ion-select-option value="Female">Female</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                  <ion-text color="danger" *ngIf="isInvalid('gender')">
+                    <p class="requiredField">This field is required.</p>
+                  </ion-text>
+
+                  <!-- Address -->
+                  <ion-item class="ion-no-padding">
+                    <ion-input type="text" label="Address" labelPlacement="floating" formControlName="address" required></ion-input>
+                  </ion-item>
+                  <ion-text color="danger" *ngIf="isInvalid('address')">
+                    <p class="requiredField">This field is required.</p>
+                  </ion-text>
+
+                  <!-- Join Date -->
+                  <ion-item class="ion-no-padding">
+                    <ion-input type="date" label="Join Date" labelPlacement="floating" formControlName="joinDate"></ion-input>
+                  </ion-item>
+
+                  <!-- Baptism Date -->
+                  <ion-item class="ion-no-padding">
+                    <ion-input type="date" label="Baptism Date" labelPlacement="floating" formControlName="baptismDate"></ion-input>
+                  </ion-item>
+                </div>
+              </ion-accordion>
+
+              <!-- LOGIN DATA -->
+              <ion-accordion value="second">
+                <ion-item slot="header" color="light">
+                  <ion-label>Login Data</ion-label>
+                </ion-item>
+                <div class="ion-padding" slot="content">
+                  <!-- Username -->
+                  <ion-item class="ion-no-padding">
+                    <ion-input type="text" label="Username" labelPlacement="floating" formControlName="username" required></ion-input>
+                  </ion-item>
+                  <ion-text color="danger" *ngIf="isInvalid('username')">
+                    <p class="requiredField">Username is required (min 4 characters).</p>
+                  </ion-text>
+
+                  <!-- Password -->
+                  <ion-item class="ion-no-padding">
+                    <ion-input type="password" label="Password" labelPlacement="floating" formControlName="password" required></ion-input>
+                  </ion-item>
+                  <ion-text color="danger" *ngIf="isInvalid('password')">
+                    <p class="requiredField">Password is required (min 6 characters).</p>
+                  </ion-text>
+
+                  <!-- Confirm Password -->
+                  <ion-item class="ion-no-padding">
+                    <ion-input type="password" label="Confirm Password" labelPlacement="floating" formControlName="confirmPassword" required></ion-input>
+                  </ion-item>
+                  <ion-text color="danger" *ngIf="isInvalid('confirmPassword')">
+                    <p class="requiredField">This field is required.</p>
+                  </ion-text>
+
+                  <!-- Recovery Email -->
+                  <ion-item class="ion-no-padding">
+                    <ion-input type="email" label="Recovery Email" labelPlacement="floating" formControlName="recoveryEmail" required></ion-input>
+                  </ion-item>
+                  <ion-text color="danger" *ngIf="isInvalid('recoveryEmail')">
+                    <p class="requiredField">Enter a valid recovery email.</p>
+                  </ion-text>
+                </div>
+              </ion-accordion>
+            </ion-accordion-group>
+
+            <!-- Submit -->
+            <div class="action-container">
+              <ion-button type="submit" expand="block" [disabled]="registrationForm.invalid">Submit</ion-button>
+              <p>
+                Do you have an account?&nbsp;
+                <ion-text color="primary" [routerLink]="'/login'"><u>Login Instead</u></ion-text>
+              </p>
+            </div>
+          </form>
+        </div>
+      </ion-col>
+      <ion-col size="1"></ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

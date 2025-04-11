@@ -1,6 +1,6 @@
 {
   "name": "ionic-app",
-  "app_id": "",
-  "type": "angular-standalone",
+  "type": "angular",
+  "project": "first-touch-ministry-app",
   "integrations": {}
 }

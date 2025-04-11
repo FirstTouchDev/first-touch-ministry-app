@@ -9,7 +9,8 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { CommonModule } from '@angular/common';
 import { ToastService } from '../../services/prompts/toast.service';
 import { SpinnerService } from '../../services/prompts/spinner.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { Status } from '../../models/enums/status.enum';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ import { Router } from '@angular/router';
   imports: [
     IonicModule,
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
@@ -31,10 +33,13 @@ export class LoginComponent  implements OnInit {
     private loginService: LoginService,
     private toastService: ToastService,
     private spinnerService: SpinnerService,
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
+
+    //this.manualUserAddition();
+
     this.loginForm = new FormGroup({
       username: new FormControl(null, Validators.required),
       password: new FormControl('', Validators.required)
@@ -63,58 +68,55 @@ export class LoginComponent  implements OnInit {
 
   private manualUserAddition(){
     const newUser: User = {
+      sys_id: '',
       sys_created_by: 'admin',
-      sys_created_date: new Date(),
-      sys_created_time: new Date().toTimeString(),
+      sys_created_at: new Date(),
       sys_updated_by: 'admin',
-      sys_updated_date: new Date(),
-      sys_updated_time: new Date().toTimeString(),
+      sys_updated_at: new Date(),
 
-      user_first_name: 'Jane',
-      user_middle_name: 'A.',
-      user_last_name: 'Doe',
-      user_email_address: 'jane.doe@example.com',
-      user_phone_number: '1234567890',
-      user_date_of_birth: new Date('1990-01-01'),
-      user_gender: Gender.Female,
-      user_address: '123 Main St',
+      user_first_name: 'Daryll',
+      user_middle_name: 'T.',
+      user_last_name: 'Talaba',
+      user_full_name: 'Daryll T. Talaba',
+      user_email_address: 'darylltalaba@gmail.com',
+      user_phone_number: '09997527570',
+      user_date_of_birth: new Date('2002-03-30'),
+      user_gender: Gender.Male,
+      user_address: 'Test',
       user_join_date: new Date(),
-      user_baptism_date: new Date('2020-01-01'),
+      user_baptism_date: new Date('2018-08-21'),
       user_all_access: false,
 
       user_account: {
         sys_created_by: 'admin',
-        sys_created_date: new Date(),
-        sys_created_time: new Date().toTimeString(),
+        sys_created_at: new Date(),
         sys_updated_by: 'admin',
-        sys_updated_date: new Date(),
-        sys_updated_time: new Date().toTimeString(),
-        username: 'janedoe',
-        password: 'securepass123',
-        recovery_email: 'recovery@example.com',
+        sys_updated_at: new Date(),
+        username: 'admin',
+        password: 'admin',
+        recovery_email: 'darylltalaba@gmail.com',
+        isUserLoggedIn: false,
+        lastLogIn: new Date(),
+        accountStatus: Status.Approved
       },
       user_role: [
         {
           sys_created_by: 'admin',
-          sys_created_date: new Date(),
-          sys_created_time: new Date().toTimeString(),
+          sys_created_at: new Date(),
           sys_updated_by: 'admin',
-          sys_updated_date: new Date(),
-          sys_updated_time: new Date().toTimeString(),
-          role_name: 'Viewer',
-          role_description: 'Can view data only',
+          sys_updated_at: new Date(),
+          role_name: 'All Access',
+          role_description: 'All Access',
         }
       ],
       user_department: [
         {
         sys_created_by: 'admin',
-        sys_created_date: new Date(),
-        sys_created_time: new Date().toTimeString(),
+        sys_created_at: new Date(),
         sys_updated_by: 'admin',
-        sys_updated_date: new Date(),
-        sys_updated_time: new Date().toTimeString(),
-        department_group: 'HR',
-        department_description: 'Human Resources',
+        sys_updated_at: new Date(),
+        department_group: 'All Access',
+        department_description: 'All Access',
         department_head: {} as User,
         }
       ]

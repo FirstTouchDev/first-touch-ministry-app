@@ -11,28 +11,27 @@ import { FirebaseApp } from '@angular/fire/app';
 export class UserService {
 
     private firestore = inject(Firestore);
-
-    constructor(
-    ) { }
-
     private db = getFirestore();
     private usersCollection = collection(this.db, 'users');
+
+    constructor() { }
 
     getAll(): Observable<User[]> {
         return collectionData(this.usersCollection, { idField: 'sys_id' }) as Observable<User[]>;
     }
 
-    add(user: User): Promise<any> {
-        return addDoc(this.usersCollection, user);
+    async add(user: Omit<User, 'sys_id'>): Promise<string> {
+        const docRef = await addDoc(this.usersCollection, user);
+        return docRef.id; 
     }
 
-    update(sys_id: string, user: Partial<User>): Promise<void> {
-        const userDoc = doc(this.firestore, `users/${sys_id}`);
+    update(docId: string, user: Partial<User>): Promise<void> {
+        const userDoc = doc(this.firestore, `users/${docId}`);
         return updateDoc(userDoc, user);
     }
 
-    delete(sys_id: string): Promise<void> {
-        const userDoc = doc(this.firestore, `users/${sys_id}`);
+    delete(docId: string): Promise<void> {
+        const userDoc = doc(this.firestore, `users/${docId}`);
         return deleteDoc(userDoc);
     }
 }

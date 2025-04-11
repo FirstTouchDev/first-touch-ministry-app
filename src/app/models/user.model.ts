@@ -4,10 +4,12 @@ import { Department } from './department.model';
 import { Gender } from './enums/gender.enum';
 import { UserAccount } from './user-account.model';
 
-export interface User extends Base {
+export interface User extends Omit<Base, 'sys_id'> {
+  sys_id?: string;
   user_first_name: string;
   user_middle_name: string;
   user_last_name: string;
+  user_full_name: string;
   user_email_address: string;
   user_phone_number: string;
   user_date_of_birth: Date;
@@ -18,5 +20,5 @@ export interface User extends Base {
   user_role: Role[];
   user_department: Department[];
   user_account: UserAccount;
-  user_all_access: boolean
+  user_all_access: boolean;
 }
